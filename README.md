@@ -9,6 +9,6 @@ El siguiente archivo cuenta con una libreria python que contiene funciones para 
 >- Multiplicar
 >- Modulo
 >- Conjugado
->- Pasar de crtesiano a polar y viceviersa
+>- Pasar de coordenadas cartesianas a polares y viceviersa
 
 Estas operaciones cuentan con un archivo de pruebas que nos dan garantia de los resultados.
