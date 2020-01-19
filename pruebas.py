@@ -42,7 +42,11 @@ class TestMyModule(unittest.TestCase):
 
     def test_polarCartesiano(self):
         a=(math.sqrt(2),math.pi/4)
-        self.assertEqual(Complejos.polarCartesiano(a),(1,1))        
+        self.assertEqual(Complejos.polarCartesiano(a),(1,1))
+
+    def test_fase(self):
+        a=(4,4*math.sqrt(3))
+        self.assertEqual(Complejos.fase(a),(60))
 
         
 if __name__ == "__main__":

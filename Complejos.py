@@ -84,7 +84,7 @@ def conjugado(a):
 def cartesianoPolar(a):
     """Cambia de coordenadas cartesianas a polares de un numero complejo.
 
-    Devuelve una tupla con la parte real y un angulo.
+    Devuelve una tupla con la parte real y un angulo en radianes.
 
     Parametros:
     a -- Es una tupla que contiene parte real y la parte imaginaria del numero complejo.
@@ -106,5 +106,20 @@ def polarCartesiano(p):
     a=round(p[0]*math.cos(p[1]),3)
     b=round(p[0]*math.sin(p[1]),3)
     return (a,b)
+
+def fase(a):
+    """Resuelve la fase de un numero complejo.
+
+    Devuelve una tupla que contiene el angulo en grados.
+
+    Parametros:
+    a -- Es una tupla que contiene parte real y la parte imaginaria del numero complejo.
+
+    """
+    div=a[1]/a[0]
+    res=math.atan(div)*180/math.pi
+    return (round(res,2))
+    
+    
         
         
