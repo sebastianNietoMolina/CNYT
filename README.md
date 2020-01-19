@@ -10,6 +10,7 @@ El siguiente archivo cuenta con una libreria python que contiene funciones para 
 >- Modulo
 >- Conjugado
 >- Pasar de coordenadas cartesianas a polares y viceviersa
+>- Fase
 
 Estas operaciones cuentan con un archivo de pruebas que nos dan garantia de los resultados.
 
