@@ -11,4 +11,4 @@ El siguiente archivo cuenta con una libreria python que contiene funciones para 
 >- Conjugado
 >- Pasar de crtesiano a polar y viceviersa
 
-Estas operaciones cuentan con unarchivo de pruebas que nos dangarantia de los resultados.
+Estas operaciones cuentan con un archivo de pruebas que nos dan garantia de los resultados.
