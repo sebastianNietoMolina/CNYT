@@ -38,7 +38,7 @@ def multiplicar(a,b):
     b -- Es una tupla que contiene parte real y la parte imaginaria del numero complejo.
 
     """
-    ente=a[0]*b[0]+(b[1]*a[1])*-1
+    ente=a[0]*b[0]+(-1*(b[1]*a[1]))
     imag=a[0]*b[1]+a[1]*b[0]
     return (ente,imag)    
 
@@ -119,6 +119,63 @@ def fase(a):
     div=a[1]/a[0]
     res=math.atan(div)*180/math.pi
     return (round(res,2))
+
+def sumaVectoresComplejos(a,b):
+    res=[]
+    for i in range(len(a)):
+        row=sumar(a[i],b[i])
+        res.append(row)
+    return res
+
+def inversaVectores(a):
+    res=[]
+    for i in range(len(a)):
+        real=a[i][0]
+        img=a[i][1]
+        row=(-real,-img)
+        res.append(row)
+    return res
+
+def multEscalarVectores(escalar,vector):
+    res=[]
+    for i in range(len(vector)):
+        row=multiplicar(escalar,vector[i])
+        print(row)
+        res.append(row)
+    return res
+
+def sumaMatricesComplejas(a,b):
+    #Solo si ambas tiene el mismo tamaño
+    res=[]
+    for i in range(len(a)):
+        row=[]
+        for j in range(len(a)):
+            print(a[i][j],b[i][j])
+            add=sumar(a[i][j],b[i][j])
+            row.append(add)
+        res.append(row)
+    return res
+
+def inversaMatricesComplejas(a):
+    res=[]
+    for i in range(len(a)):
+        res.append(inversaVectores(a[i]))
+    return res
+
+def escalarMultMatricesComplejas(escalar,matriz):
+    res=[]
+    for i in range(len(matriz)):
+        res.append(multEscalarVectores(escalar,matriz[i]))
+    return res
+
+def transpuestaMatriz(a):
+    res=[]
+    #pilas comn esto.
+        
+        
+            
+        
+            
     
     
         
