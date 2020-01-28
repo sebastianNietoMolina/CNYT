@@ -16,8 +16,6 @@ Estas operaciones cuentan con un archivo de pruebas que nos dan garantia de los 
 
 Para hacer uso de alguna funcion se debe tener en cuenta que todos los parametros entran como tuplas, en donde tenemos la parte real y la parte imaginaria separada; por ejemplo:
 
-Inline `code`
-
 Indented code
 
     a=(1,2)
