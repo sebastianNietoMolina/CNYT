@@ -169,10 +169,33 @@ def escalarMultMatricesComplejas(escalar,matriz):
     return res
 
 def transpuestaMatriz(a):
+    res=rellenar(a)    
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            res[j][i]=a[i][j]
+    return res
+
+def conjugadoMatriz(a):
     res=[]
-    #pilas comn esto.
+    for i in range(len(a)):
+        row=[]
+        for j in range(len(a[i])):
+            row.append(conjugado(a[i][j]))
+        res.append(row)
+    return res
+
+def adjuntaMatriz(a):
+    conj=conjugadoMatriz(a)
+    return transpuestaMatriz(conj)
         
-        
+def rellenar(a):
+    res=[]
+    for i in range(len(a[0])):
+        row=[]
+        for j in range(len(a)):
+            row.append(None)
+        res.append(row)
+    return res
             
         
             
