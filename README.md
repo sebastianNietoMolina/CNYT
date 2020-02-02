@@ -41,9 +41,13 @@ Para hacer uso de esta libreria debemos tener instalado en nuestro computador un
 
 ## Instalacion
 
-Para hacer uso de la libreria de numeros complejos, debemos descargar la siguiente [carpeta](https://github.com/sebastianNietoMolina/CNYT).
+Para hacer uso de la libreria de numeros complejos, debemos descargar la siguiente [carpeta](https://github.com/sebastianNietoMolina/CNYT). y damos clic donde dice Clone or download.
+
 ![](Imagenes/descargar.PNG)
-Luego debemos ir a nuestro IDLE y abrir el documento como se muestra acontinuacion, para abrir la carpeta damos Ctrl+o, o vaoms a FIle damos clic y luego en donde dice abrir.
+
+
+Luego debemos ir a nuestro IDLE y abrir el documento como se muestra acontinuacion, para abrir la carpeta damos Ctrl+o, o vamos a File damos clic y luego en donde dice abrir.
+
 ![](Imagenes/abrir.PNG)
 
 ## Pruebas
