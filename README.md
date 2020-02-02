@@ -42,8 +42,11 @@ Para hacer uso de esta libreria debemos tener instalado en nuestro computador un
 ## Instalacion
 
 Para hacer uso de la libreria de numeros complejos, debemos descargar la siguiente [carpeta](https://github.com/sebastianNietoMolina/CNYT).
-Luego debemos ir a nuestro IDLE y abrir el documento como se muestra acontinuacion.
+![](Imagenes/descargar.PNG)
+Luego debemos ir a nuestro IDLE y abrir el documento como se muestra acontinuacion, para abrir la carpeta damos Ctrl+o, o vaoms a FIle damos clic y luego en donde dice abrir.
+![](Imagenes/abrir.PNG)
 
 ## Pruebas
 
-Para hacer uso de las pruebas, debemos ir a la carpeta que descargamos con anterioridad y abrir el documentos de pruebas.py desde nuestro IDLE. Estan pruebas tienen casos del libro y otros hechos por mi.
+Para hacer uso de las pruebas, debemos ir a la carpeta que descargamos con anterioridad y abrir el documentos de pruebas.py desde nuestro IDLE. Estan pruebas tienen casos del libro y otros hechos por mi. Para ejecutar estas pruebas repetimos el proecdimiento anterio, pero ahora ya no escogemos Complejos.py si no pruebas.py.
+![](Imagenes/abrir.PNG)
