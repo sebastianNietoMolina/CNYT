@@ -320,12 +320,33 @@ def productoInternoVectores(a,b):
     newA=adjuntaMatriz(a)
     suma=(0,0)
     for i in range(len(newA)):
-        for j in range(len(vector)):
-            temp=multiplicar(matriz[i][j],vector[j])
+        for j in range(len(b)):
+            temp=multiplicar(a[i][j],b[j])
             suma=sumar(temp,suma)
     return suma
-        
-    
+
+def productoTensor(a,b):
+    """Calcula el producto tensor entre 2 matrices de numeros complejos.
+
+    Devuelve una matriz con el producto tensor de a y b.
+
+    Parametros:
+    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+    b -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
+
+    res=[]
+    for i in range(len(a)):
+        for j in range(len(b)):
+            row=[]
+            for k in range(len(a[i])):
+                for l in range(len(b[k])):
+                    val=multiplicar(a[i][k],b[j][l])
+                    row.append(val)
+            res.append(row)
+            
+    return res    
         
 def rellenar(a):
     res=[]
