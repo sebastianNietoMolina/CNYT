@@ -77,6 +77,7 @@ def conjugado(a):
     a -- Es una tupla que contiene parte real y la parte imaginaria del numero complejo.
 
     """
+    print(a)
     ente=a[0]
     imag=a[1]*-1
     return (ente,imag)
@@ -91,7 +92,7 @@ def cartesianoPolar(a):
 
     """
     p=(math.sqrt(a[0]**2+a[1]**2))
-    o=(math.atan(a[1]/a[0]))
+    o=(math.atan2(a[1],a[0]))
     return (p,o)
 
 def polarCartesiano(p):
@@ -110,17 +111,25 @@ def polarCartesiano(p):
 def fase(a):
     """Resuelve la fase de un numero complejo.
 
-    Devuelve una tupla que contiene el angulo en grados.
+    Devuelve una tupla que contiene el angulo en radianes.
 
     Parametros:
     a -- Es una tupla que contiene parte real y la parte imaginaria del numero complejo.
 
     """
-    div=a[1]/a[0]
-    res=math.atan(div)*180/math.pi
+    res=math.atan2(a[1],a[0])
     return (round(res,2))
 
 def sumaVectoresComplejos(a,b):
+    """Resuelve la suma de dos vectores de numeros complejos.
+
+    Devuelve un arreglo con la suma de vectores.
+
+    Parametros:
+    a -- Es un Arreglo que repesenta un vector.
+    b -- Es un Arreglo que repesenta un vector.
+
+    """
     res=[]
     for i in range(len(a)):
         row=sumar(a[i],b[i])
@@ -128,6 +137,14 @@ def sumaVectoresComplejos(a,b):
     return res
 
 def inversaVectores(a):
+    """Calcula la inversa de un vector de numeros complejos.
+
+    Devuelve un arreglo con la inversa del vector a.
+
+    Parametros:
+    a -- Es un Arreglo que representa un vector, contiene tuplas de numeros complejos.
+
+    """
     res=[]
     for i in range(len(a)):
         real=a[i][0]
@@ -137,6 +154,15 @@ def inversaVectores(a):
     return res
 
 def multEscalarVectores(escalar,vector):
+    """Resuelve la multiplicacion de un escalar por un vectores de numeros complejos.
+
+    Devuelve un arreglo con la multiplicacion del escalar por el vector.
+
+    Parametros:
+    escalar -- Es una tupla que contiene un numero complejo (real, imaginario).
+    vector -- Es un Arreglo que repesenta un vector, con tuplas de complejos.
+
+    """
     res=[]
     for i in range(len(vector)):
         row=multiplicar(escalar,vector[i])
@@ -146,6 +172,15 @@ def multEscalarVectores(escalar,vector):
 
 def sumaMatricesComplejas(a,b):
     #Solo si ambas tiene el mismo tamaño
+    """Resuelve la suma de dos matrices de numeros complejos.
+
+    Devuelve un arreglo con la suma de las matrices.
+
+    Parametros:
+    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+    b -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
     res=[]
     for i in range(len(a)):
         row=[]
@@ -157,18 +192,43 @@ def sumaMatricesComplejas(a,b):
     return res
 
 def inversaMatricesComplejas(a):
+    """Calcula la inversa de una matriz de numeros comlejos.
+
+    Devuelve un arreglo de arreglos con la inversa de a.
+
+    Parametros:
+    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
     res=[]
     for i in range(len(a)):
         res.append(inversaVectores(a[i]))
     return res
 
 def escalarMultMatricesComplejas(escalar,matriz):
+    """Calcula la multiplicaicon de un escalar por una matriz de numeros complejos.
+
+    Devuelve un arreglo de arreglos que representa la multiplicacion.
+
+    Parametros:
+    escalar -- Es una tupla de un numero complejo.
+    matriz -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
     res=[]
     for i in range(len(matriz)):
         res.append(multEscalarVectores(escalar,matriz[i]))
     return res
 
 def transpuestaMatriz(a):
+    """Calcula la transpuesta de una matriz de numeros complejos.
+
+    Devuelve un arreglo de arreglos con la transpuesta de a.
+
+    Parametros:
+    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
     res=rellenar(a)    
     for i in range(len(a)):
         for j in range(len(a[i])):
@@ -176,6 +236,14 @@ def transpuestaMatriz(a):
     return res
 
 def conjugadoMatriz(a):
+    """Calcula el conjugado de una matriz de numeros complejos.
+
+    Devuelve un arreglo de arreglos con el conjugado de a.
+
+    Parametros:
+    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
     res=[]
     for i in range(len(a)):
         row=[]
@@ -185,8 +253,79 @@ def conjugadoMatriz(a):
     return res
 
 def adjuntaMatriz(a):
+    """Calcula la adjunta de un matriz de numeros complejos.
+
+    Devuelve un arreglo de arreglos con la adjunta de a.
+
+    Parametros:
+    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
     conj=conjugadoMatriz(a)
     return transpuestaMatriz(conj)
+
+def productoDeMatrices(a,b):
+    """Calcula el producto dos matrices de numeros complejos.
+
+    Devuelve un arreglo de arreglos con el producto de a y b.
+
+    Parametros:
+    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+    b -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
+
+    res=[]
+    for i in range(len(a)):
+        row=[]
+        for j in range(len(a[i])):
+            suma=(0,0)
+            for k in range(len(a[i])):
+                temp=multiplicar(a[i][k],b[k][j])
+                suma=sumar(temp, suma)
+            row.append(suma)
+        res.append(row)
+    return res
+
+def productoMatrizVector(matriz,vector):
+    """Calcula el producto una matrices y un vector; de numeros complejos.
+
+    Devuelve un arreglo con el producto de la matriz y el vector.
+
+    Parametros:
+    matriz -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+    vector -- Es un arreglo repesenta un vector, contiene tuplas de numeros complejos.
+
+    """
+    res=[]
+    for i in range(len(matriz)):
+        suma=(0,0)
+        for j in range(len(vector)):
+            temp=multiplicar(matriz[i][j],vector[j])
+            suma=sumar(temp,suma)
+        res.append(suma)                  
+    return res
+
+def productoInternoVectores(a,b):
+    """Calcula el producto interno de 2 matrices de numeros complejos.
+
+    Devuelve un numero complejo con el producto interno de a y b.
+
+    Parametros:
+    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+    b -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
+    res=0
+    newA=adjuntaMatriz(a)
+    suma=(0,0)
+    for i in range(len(newA)):
+        for j in range(len(vector)):
+            temp=multiplicar(matriz[i][j],vector[j])
+            suma=sumar(temp,suma)
+    return suma
+        
+    
         
 def rellenar(a):
     res=[]
