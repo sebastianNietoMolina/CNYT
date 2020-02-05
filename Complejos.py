@@ -77,7 +77,6 @@ def conjugado(a):
     a -- Es una tupla que contiene parte real y la parte imaginaria del numero complejo.
 
     """
-    print(a)
     ente=a[0]
     imag=a[1]*-1
     return (ente,imag)
@@ -166,7 +165,6 @@ def multEscalarVectores(escalar,vector):
     res=[]
     for i in range(len(vector)):
         row=multiplicar(escalar,vector[i])
-        print(row)
         res.append(row)
     return res
 
@@ -184,8 +182,7 @@ def sumaMatricesComplejas(a,b):
     res=[]
     for i in range(len(a)):
         row=[]
-        for j in range(len(a)):
-            print(a[i][j],b[i][j])
+        for j in range(len(a[i])):
             add=sumar(a[i][j],b[i][j])
             row.append(add)
         res.append(row)
@@ -205,7 +202,7 @@ def inversaMatricesComplejas(a):
         res.append(inversaVectores(a[i]))
     return res
 
-def escalarMultMatricesComplejas(escalar,matriz):
+def multEscalarMatriz(escalar,matriz):
     """Calcula la multiplicaicon de un escalar por una matriz de numeros complejos.
 
     Devuelve un arreglo de arreglos que representa la multiplicacion.
@@ -222,6 +219,7 @@ def escalarMultMatricesComplejas(escalar,matriz):
 
 def transpuestaMatriz(a):
     """Calcula la transpuesta de una matriz de numeros complejos.
+    En particular, si se ingresa un vector seria de la forma:[[(r0,c0),(r1,c1),(rn,cn)]]
 
     Devuelve un arreglo de arreglos con la transpuesta de a.
 
@@ -233,10 +231,11 @@ def transpuestaMatriz(a):
     for i in range(len(a)):
         for j in range(len(a[i])):
             res[j][i]=a[i][j]
-    return res
+    return res   
 
 def conjugadoMatriz(a):
     """Calcula el conjugado de una matriz de numeros complejos.
+    En particular, si se ingresa un vector seria de la forma:[[(r0,c0),(r1,c1),(rn,cn)]]
 
     Devuelve un arreglo de arreglos con el conjugado de a.
 
@@ -307,23 +306,52 @@ def productoMatrizVector(matriz,vector):
     return res
 
 def productoInternoVectores(a,b):
-    """Calcula el producto interno de 2 matrices de numeros complejos.
+    """Calcula el producto interno de 2 vectores de numeros complejos.
 
     Devuelve un numero complejo con el producto interno de a y b.
+
+    Parametros:
+    a -- Es un arreglo que repesenta una matriz, contiene tuplas de numeros complejos.
+    b -- Es un arreglo que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
+    res=0
+    newA=adjuntaMatriz(a)
+    print(newA)
+    suma=(0,0)
+    for i in range(len(a)):
+        for j in range(len(a)):
+            print(a[i][j],b[j][i],'--------',i,j)
+            temp=multiplicar(a[i][j],b[j][i])
+            suma=sumar(temp,suma)
+    return suma
+
+def normaMatriz(a):
+    """Calcula la norma o loguitud de una  complejos.
+
+    Devuelve un numero que representa la normal o longuitud.
+
+    Parametros:
+    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+    """
+    pim=productoInternoVectores(a,a)
+    return math.sqrt(pim)
+
+def distanciaMatrices(a,b):
+    """Calcula la distancia de 2 matrices de numeros complejos.
+
+    Devuelve un numero que representa la disstancia.
 
     Parametros:
     a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
     b -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
 
     """
-    res=0
-    newA=adjuntaMatriz(a)
-    suma=(0,0)
-    for i in range(len(newA)):
-        for j in range(len(b)):
-            temp=multiplicar(a[i][j],b[j])
-            suma=sumar(temp,suma)
-    return suma
+    newB=multEscalarMatriz((-1,0),b)
+    A=sumaMatricesComplejas(a,newB)
+    print(A)
+    pim=productoInternoVectores(A,A)
+    return math.sqrt(pim)    
 
 def productoTensor(a,b):
     """Calcula el producto tensor entre 2 matrices de numeros complejos.
