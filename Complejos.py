@@ -231,7 +231,7 @@ def transpuestaMatriz(a):
     for i in range(len(a)):
         for j in range(len(a[i])):
             res[j][i]=a[i][j]
-    return res   
+    return res
 
 def conjugadoMatriz(a):
     """Calcula el conjugado de una matriz de numeros complejos.
@@ -311,18 +311,16 @@ def productoInternoVectores(a,b):
     Devuelve un numero complejo con el producto interno de a y b.
 
     Parametros:
-    a -- Es un arreglo que repesenta una matriz, contiene tuplas de numeros complejos.
-    b -- Es un arreglo que repesenta una matriz, contiene tuplas de numeros complejos.
+    a -- Es un arreglo que repesenta un vector, contiene tuplas de numeros complejos.
+    b -- Es un arreglo que repesenta un vector, contiene tuplas de numeros complejos.
 
     """
     res=0
-    newA=adjuntaMatriz(a)
-    print(newA)
+    newA=adjuntaMatriz([a])
     suma=(0,0)
     for i in range(len(a)):
-        for j in range(len(a)):
-            print(a[i][j],b[j][i],'--------',i,j)
-            temp=multiplicar(a[i][j],b[j][i])
+        for j in range(len(newA[i])):
+            temp=multiplicar(newA[i][j],b[i])
             suma=sumar(temp,suma)
     return suma
 
@@ -334,7 +332,7 @@ def normaMatriz(a):
     Parametros:
     a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
     """
-    pim=productoInternoVectores(a,a)
+    pim=(a,a)
     return math.sqrt(pim)
 
 def distanciaMatrices(a,b):
@@ -374,7 +372,22 @@ def productoTensor(a,b):
                     row.append(val)
             res.append(row)
             
-    return res    
+    return res
+
+def productoInternoMatrices(a,b):
+    """Calcula el producto interno de 2 matrices de numeros complejos.
+
+    Devuelve un numero complejo con el producto interno de a y b.
+
+    Parametros:
+    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+    b -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
+    newA=adjuntaMatriz(a)
+    for i in range(len(a)):
+        for j in range(len(newA[i])):
+            True
         
 def rellenar(a):
     res=[]
