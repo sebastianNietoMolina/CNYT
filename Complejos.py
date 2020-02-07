@@ -324,33 +324,61 @@ def productoInternoVectores(a,b):
             suma=sumar(temp,suma)
     return suma
 
-def normaMatriz(a):
-    """Calcula la norma o loguitud de una  complejos.
+def normaVector(a):
+    """Calcula la norma o loguitud de un vectorde numeros complejos.
 
-    Devuelve un numero que representa la normal o longuitud.
+    Devuelve un numero que representa la norma o longuitud.
 
     Parametros:
-    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+    a -- Es un arreglo que repesenta un vector, contiene tuplas de numeros complejos.
     """
-    pim=(a,a)
-    return math.sqrt(pim)
+    pim=productoInternoVectores(a,a)
+    return math.sqrt(pim[0])
 
-def distanciaMatrices(a,b):
-    """Calcula la distancia de 2 matrices de numeros complejos.
+def distanciaVectores(a,b):
+    """Calcula la distancia de 2 vectores de numeros complejos.
 
     Devuelve un numero que representa la disstancia.
 
     Parametros:
-    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
-    b -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+    a -- Es un arreglo que repesenta un vector, contiene tuplas de numeros complejos.
+    b -- Es un arreglo que repesenta un vector, contiene tuplas de numeros complejos.
 
     """
-    newB=multEscalarMatriz((-1,0),b)
-    A=sumaMatricesComplejas(a,newB)
-    print(A)
-    pim=productoInternoVectores(A,A)
-    return math.sqrt(pim)    
+    newB=multEscalarVectores((-1,0),b)
+    A=sumaMatricesComplejas([a],[newB])
+    pim=productoInternoVectores(A[0],A[0])
+    return math.sqrt(pim[0])    
 
+def matrizUnitariaComprobacion(a):
+    """Comprueba si la matriz es o no unitaria.
+
+    Devuelve un booleano avisando si la matriz es o no unitaria.
+
+    Parametros:
+    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
+    uni=conjugadoMatriz(a)
+    tpa=transpuestaMatriz(a)
+    if uni==tpa:
+        return True
+    return False
+
+def matrizHermitianaComprobacion(a):
+    """Comprueba si la matriz es o no hermitiana.
+
+    Devuelve un booleano avisando si la matriz es o no hermitiana.
+
+    Parametros:
+    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
+
+    """
+    adj=conjugadoMatriz(a)
+    if adj==a:
+        return True
+    return False
+    
 def productoTensor(a,b):
     """Calcula el producto tensor entre 2 matrices de numeros complejos.
 
@@ -374,20 +402,6 @@ def productoTensor(a,b):
             
     return res
 
-def productoInternoMatrices(a,b):
-    """Calcula el producto interno de 2 matrices de numeros complejos.
-
-    Devuelve un numero complejo con el producto interno de a y b.
-
-    Parametros:
-    a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
-    b -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
-
-    """
-    newA=adjuntaMatriz(a)
-    for i in range(len(a)):
-        for j in range(len(newA[i])):
-            True
         
 def rellenar(a):
     res=[]
