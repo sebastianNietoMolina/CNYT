@@ -63,11 +63,14 @@ def division(a,b):
     b -- Es una tupla que contiene parte real y la parte imaginaria del numero complejo.
 
     """
-    div=b[0]**2+b[1]**2
-    ente=(a[0]*b[0]+a[1]*b[1])/div
-    imag=(a[1]*b[0]-a[0]*b[1])/div
-    return (ente,imag)    
-
+    try:
+        div=b[0]**2+b[1]**2
+        ente=(a[0]*b[0]+a[1]*b[1])/div
+        imag=(a[1]*b[0]-a[0]*b[1])/div
+        return (ente,imag)    
+    except:
+        return 'Imposible hacer la division.'
+        
 def conjugado(a):
     """Resuelve el conugado de un numero complejo.
 
@@ -129,11 +132,14 @@ def sumaVectoresComplejos(a,b):
     b -- Es un Arreglo que repesenta un vector.
 
     """
-    res=[]
-    for i in range(len(a)):
-        row=sumar(a[i],b[i])
-        res.append(row)
-    return res
+    try:
+        res=[]
+        for i in range(len(a)):
+            row=sumar(a[i],b[i])
+            res.append(row)
+        return res
+    except:
+        return 'No es posible hacer la suma de vectores, revisa las dimensiones.'
 
 def inversaVectores(a):
     """Calcula la inversa de un vector de numeros complejos.
@@ -169,7 +175,6 @@ def multEscalarVectores(escalar,vector):
     return res
 
 def sumaMatricesComplejas(a,b):
-    #Solo si ambas tiene el mismo tamaño
     """Resuelve la suma de dos matrices de numeros complejos.
 
     Devuelve un arreglo con la suma de las matrices.
@@ -179,14 +184,17 @@ def sumaMatricesComplejas(a,b):
     b -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
 
     """
-    res=[]
-    for i in range(len(a)):
-        row=[]
-        for j in range(len(a[i])):
-            add=sumar(a[i][j],b[i][j])
-            row.append(add)
-        res.append(row)
-    return res
+    try:
+        res=[]
+        for i in range(len(a)):
+            row=[]
+            for j in range(len(a[i])):
+                add=sumar(a[i][j],b[i][j])
+                row.append(add)
+            res.append(row)
+        return res
+    except:
+        return 'No es posible hacer la suma de matrices, revisa las dimensinones.'
 
 def inversaMatricesComplejas(a):
     """Calcula la inversa de una matriz de numeros comlejos.
@@ -213,8 +221,8 @@ def multEscalarMatriz(escalar,matriz):
 
     """
     res=[]
-    for i in range(len(matriz)):
-        res.append(multEscalarVectores(escalar,matriz[i]))
+    for i in matriz:
+        res.append(multEscalarVectores(escalar,i))
     return res
 
 def transpuestaMatriz(a):
@@ -273,18 +281,20 @@ def productoDeMatrices(a,b):
     b -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
 
     """
-
-    res=[]
-    for i in range(len(a)):
-        row=[]
-        for j in range(len(a[i])):
-            suma=(0,0)
-            for k in range(len(a[i])):
-                temp=multiplicar(a[i][k],b[k][j])
-                suma=sumar(temp, suma)
-            row.append(suma)
-        res.append(row)
-    return res
+    try:
+        res=[]
+        for i in range(len(a)):
+            row=[]
+            for j in range(len(a[i])):
+                suma=(0,0)
+                for k in range(len(a[i])):
+                    temp=multiplicar(a[i][k],b[k][j])
+                    suma=sumar(temp, suma)
+                row.append(suma)
+            res.append(row)
+        return res
+    except:
+        return 'No es posible hacer el prudcto de matrices, revisa las dimensiones.'
 
 def productoMatrizVector(matriz,vector):
     """Calcula el producto una matrices y un vector; de numeros complejos.
@@ -296,14 +306,17 @@ def productoMatrizVector(matriz,vector):
     vector -- Es un arreglo repesenta un vector, contiene tuplas de numeros complejos.
 
     """
-    res=[]
-    for i in range(len(matriz)):
-        suma=(0,0)
-        for j in range(len(vector)):
-            temp=multiplicar(matriz[i][j],vector[j])
-            suma=sumar(temp,suma)
-        res.append(suma)                  
-    return res
+    try:
+        res=[]
+        for i in range(len(matriz)):
+            suma=(0,0)
+            for j in range(len(vector)):
+                temp=multiplicar(matriz[i][j],vector[j])
+                suma=sumar(temp,suma)
+            res.append(suma)                  
+        return res
+    except:
+        return 'No es posible hacer el producto de matriz y vector, revisa las dimensiones.'
 
 def productoInternoVectores(a,b):
     """Calcula el producto interno de 2 vectores de numeros complejos.
@@ -315,14 +328,16 @@ def productoInternoVectores(a,b):
     b -- Es un arreglo que repesenta un vector, contiene tuplas de numeros complejos.
 
     """
-    res=0
-    newA=adjuntaMatriz([a])
-    suma=(0,0)
-    for i in range(len(a)):
-        for j in range(len(newA[i])):
-            temp=multiplicar(newA[i][j],b[i])
-            suma=sumar(temp,suma)
-    return suma
+    try:
+        newA=adjuntaMatriz([a])
+        suma=(0,0)
+        for i in range(len(a)):
+            for j in range(len(newA[i])):
+                temp=multiplicar(newA[i][j],b[i])
+                suma=sumar(temp,suma)
+        return suma
+    except:
+        return 'No es posible hacer el prodcuto interno de vecctores, revisa las dimensiones.'
 
 def normaVector(a):
     """Calcula la norma o loguitud de un vectorde numeros complejos.
@@ -359,9 +374,11 @@ def matrizUnitariaComprobacion(a):
     a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
 
     """
-    uni=conjugadoMatriz(a)
-    tpa=transpuestaMatriz(a)
-    if uni==tpa:
+    adj=adjuntaMatriz(a)
+    mul=productoDeMatrices(a,adj)
+    res=crearIdentidad(a)
+    rm=redondear(mul)
+    if res==rm:
         return True
     return False
 
@@ -374,7 +391,7 @@ def matrizHermitianaComprobacion(a):
     a -- Es un arreglo de arreglos que repesenta una matriz, contiene tuplas de numeros complejos.
 
     """
-    adj=conjugadoMatriz(a)
+    adj=adjuntaMatriz(a)
     if adj==a:
         return True
     return False
@@ -398,11 +415,31 @@ def productoTensor(a,b):
                 for l in range(len(b[k])):
                     val=multiplicar(a[i][k],b[j][l])
                     row.append(val)
-            res.append(row)
-            
+            res.append(row)            
     return res
 
-        
+def redondear(a):
+    res=[]
+    for i in a:
+        row=[]
+        for j in i:
+            row.append((round(j[0]),j[1]))
+        res.append(row)
+    return res
+
+def crearIdentidad(a):
+    res=[]
+    for i in range(len(a)):
+        row=[]
+        for j in range(len(a[i])):
+            if j==i:
+                row.append((1,0))
+            else:
+                row.append((0,0))
+        res.append(row)
+    return res
+                
+    
 def rellenar(a):
     res=[]
     for i in range(len(a[0])):
