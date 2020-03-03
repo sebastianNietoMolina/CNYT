@@ -418,6 +418,42 @@ def productoTensor(a,b):
             res.append(row)            
     return res
 
+def sistemaDeterministico(grafo, vector, clics):
+    """Calcula los clics en un sistema deterministico.
+
+    Devuelve vector de probabilidades.
+
+    Parametros:
+    grafo -- Es un arreglo de arreglos que repesenta una matriz booleana.
+    vector -- Es un arreglo que repesenta el estado inicial de cuantas canicas hay en cada vetice.
+    clics -- Cuantos movimientos de tiempo debe hacer.
+
+    """
+    temp=grafo
+    for i in range(clics-1):
+        temp=productoDeMatrices(grafo,temp)
+        
+    if clics==0:
+        return vector
+    else:
+        res=productoMatrizVector(temp,vector)
+        return res
+
+def multiplesRendijas(rendijas,objetivos,vec):
+    """Calcula los clics en un sistema deterministico.
+
+    Devuelve vector de probabilidades.
+
+    Parametros:
+    rendijas -- Representa la cantidad de rendijas que tendra el sistema.
+    objetivos -- Representa la cantidad de objetivos que tendra el sistema.
+    vec -- Vector que contiene la probabilidad de que cada bala se mueva por el objetivo.
+
+    """
+    grafo=[]
+    return true
+        
+    
 def redondear(a):
     res=[]
     for i in a:
