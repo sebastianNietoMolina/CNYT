@@ -439,7 +439,7 @@ def sistemaDeterministico(grafo, vector, clics):
         res=productoMatrizVector(temp,vector)
         return res
 
-def multiplesRendijas(rendijas,objetivos,vec):
+def multiplesRendijas(rendijas,objetivo,vec):
     """Calcula los clics en un sistema deterministico.
 
     Devuelve vector de probabilidades.
@@ -450,9 +450,49 @@ def multiplesRendijas(rendijas,objetivos,vec):
     vec -- Vector que contiene la probabilidad de que cada bala se mueva por el objetivo.
 
     """
+    temp=rendijas+1
+    lim=objetivo+2
+    frac1=1/objetivo
+    frac2=1/rendijas
+    divisiones=objetivo//2
+    dim=calcularTamaño(objetivo,rendijas,divisiones)+rendijas
+    grafo=crarGrafo(dim+1,temp)
+    grafo=llenarUno(grafo,rendijas,dim,objetivo,frac2)
+    grado=llenarDos(grafo,dim,objetivo,frac1) 
+
+def llenarDos(g,dim,ob,f):
+    for i in range(dim+1):
+        for j in range(1,dim+1):
+            return True;
+"Terminar filas 1 a fin"            
+            
+    
+def llenarUno(g,x,dim,obj,frac2):
+    for j in range(1,dim+1):
+        if j<=x:
+            g[j][0]=(frac2,0)
+    return g
+    
+
+def crarGrafo(dim,temp):
     grafo=[]
-    return true
-        
+    for i in range(dim):
+        row=[]
+        for j in range(dim):
+            if i==temp and j==temp:
+                row.append((1,0))
+                temp+=1
+            else:
+                row.append((0,0))
+        grafo.append(row)
+    return grafo
+
+def calcularTamaño(ob,re,div):
+    res=div
+    for i in range(re):
+        res+=div
+    return res+re
+    
     
 def redondear(a):
     res=[]
