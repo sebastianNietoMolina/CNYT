@@ -418,7 +418,7 @@ def productoTensor(a,b):
             res.append(row)            
     return res
 
-def sistemaDeterministico(grafo, vector, clics):
+def sistemaDeterministicoProbabilistico(grafo, vector, clics):
     """Calcula los clics en un sistema deterministico.
 
     Devuelve vector de probabilidades.
@@ -429,17 +429,45 @@ def sistemaDeterministico(grafo, vector, clics):
     clics -- Cuantos movimientos de tiempo debe hacer.
 
     """
-    temp=grafo
-    for i in range(clics-1):
-        temp=productoDeMatrices(grafo,temp)
-        
+    
     if clics==0:
         return vector
     else:
+        temp=click(grafo,clics)
         res=productoMatrizVector(temp,vector)
-        return res
+        return res  
 
-def multiplesRendijas(rendijas,objetivo,vec):
+def sistemaProbabilisticoMultiplesRendijas(rendijas,objetivo,probabilidades):
+    """Calcula los clics en un sistema deterministico.
+
+    Devuelve vector de probabilidades.
+
+    Parametros:
+    rendija -- Representa la cantidad de rendijas que se usaran en la simulacion.
+    objetivos -- Representa la cantidad de objetivos que se usaran en la simulacion.
+    probabilidades -- Es un vector que contiene las probabilidades de ir de una rendija a un objetivo.
+
+    """
+    vecIni=[(1,0)]
+    temp=rendijas+1
+    lim=objetivo+2
+    frac2=1/rendijas
+    divisiones=objetivo//2
+    dim=calcularTamaño(objetivo,rendijas,divisiones)+rendijas
+    grafo=crarGrafo(dim+1,temp)
+    grafo=llenarUno(grafo,rendijas,dim,objetivo,frac2)
+    grafo=llenarDos(grafo,rendijas,objetivo,probabilidades,divisiones)
+    for i in range(dim-1):
+        vecIni.append((0,0))
+    k=click(grafo,2)
+    for i in k:
+        print(i)
+    print()
+    res=sistemaDeterministicoProbabilistico(grafo, vecIni, 2)
+    return res
+    
+
+def multiplesRendijas(rendijas,objetivo,probabilidades):
     """Calcula los clics en un sistema deterministico.
 
     Devuelve vector de probabilidades.
@@ -447,26 +475,40 @@ def multiplesRendijas(rendijas,objetivo,vec):
     Parametros:
     rendijas -- Representa la cantidad de rendijas que tendra el sistema.
     objetivos -- Representa la cantidad de objetivos que tendra el sistema.
-    vec -- Vector que contiene la probabilidad de que cada bala se mueva por el objetivo.
+    probabilidades -- Es un vector que contiene las probabilidades de ir de una rendija a un objetivo.
 
     """
     temp=rendijas+1
     lim=objetivo+2
-    frac1=1/objetivo
-    frac2=1/rendijas
+    frac2=1/math.sqrt(rendijas)
     divisiones=objetivo//2
     dim=calcularTamaño(objetivo,rendijas,divisiones)+rendijas
     grafo=crarGrafo(dim+1,temp)
     grafo=llenarUno(grafo,rendijas,dim,objetivo,frac2)
-    grado=llenarDos(grafo,dim,objetivo,frac1) 
+    grafo=llenarDos(grafo,rendijas,objetivo,probabilidades,divisiones)
+    return grafo
 
-def llenarDos(g,dim,ob,f):
-    for i in range(dim+1):
-        for j in range(1,dim+1):
-            return True;
-"Terminar filas 1 a fin"            
+def click(grafo,click):
+    temp=grafo
+    for i in range(click-1):
+        temp=productoDeMatrices(grafo,temp)
+    return temp  
+
+def llenarDos(g,r,o,p,div):
+    temp=0
+    k=o
+    vec=0
+    while temp!=r:
+        temp+=1
+        i=0
+        while i!=o:
+            g[k][temp]=p[vec]
+            vec+=1
+            i+=1
+            k+=1
+        k-=div
+    return g
             
-    
 def llenarUno(g,x,dim,obj,frac2):
     for j in range(1,dim+1):
         if j<=x:
