@@ -1,4 +1,5 @@
 import math
+from matplotlib import pyplot
 
 def sumar(a,b):
     """Resuelve la suma de 2 numeros complejos.
@@ -467,7 +468,7 @@ def sistemaProbabilisticoMultiplesRendijas(rendijas,objetivo,probabilidades):
     return res
     
 
-def multiplesRendijas(rendijas,objetivo,probabilidades):
+def simulacionCuanticaMultiplesRendijas(rendijas,objetivo,probabilidades):
     """Calcula los clics en un sistema deterministico.
 
     Devuelve vector de probabilidades.
@@ -478,6 +479,7 @@ def multiplesRendijas(rendijas,objetivo,probabilidades):
     probabilidades -- Es un vector que contiene las probabilidades de ir de una rendija a un objetivo.
 
     """
+    vecIni=[(1,0)]
     temp=rendijas+1
     lim=objetivo+2
     frac2=1/math.sqrt(rendijas)
@@ -486,7 +488,29 @@ def multiplesRendijas(rendijas,objetivo,probabilidades):
     grafo=crarGrafo(dim+1,temp)
     grafo=llenarUno(grafo,rendijas,dim,objetivo,frac2)
     grafo=llenarDos(grafo,rendijas,objetivo,probabilidades,divisiones)
-    return grafo
+    for i in range(dim-1):
+        vecIni.append((0,0))
+    k=click(grafo,2)
+    grafo=cambiarProbabilidad(k)
+    res=sistemaDeterministicoProbabilistico(grafo, vecIni, 2)
+    graficar(res)
+    return res    
+
+def graficar(vec):
+    res=[]
+    pos=[]
+    for i in range(len(vec)):
+        res.append(vec[i][0])
+        pos.append(i)
+    pyplot.title("Probabilidad experimento de rendija cuantica")
+    pyplot.bar(pos, height=res, color='blue', width=0.5)
+    pyplot.show()
+def cambiarProbabilidad(g):
+    for i in range(len(g)):
+        for j in range(len(g[i])):
+            temp=g[i][j]
+            g[i][j]=(temp[0]*temp[0]+temp[1]*temp[1],0)
+    return g
 
 def click(grafo,click):
     temp=grafo
