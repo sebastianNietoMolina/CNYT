@@ -197,6 +197,8 @@ def sumaMatricesComplejas(a,b):
     except:
         return 'No es posible hacer la suma de matrices, revisa las dimensinones.'
 
+
+
 def inversaMatricesComplejas(a):
     """Calcula la inversa de una matriz de numeros comlejos.
 
@@ -331,6 +333,7 @@ def productoInternoVectores(a,b):
     """
     try:
         newA=adjuntaMatriz([a])
+        print(newA)
         suma=(0,0)
         for i in range(len(a)):
             for j in range(len(newA[i])):
@@ -496,6 +499,18 @@ def simulacionCuanticaMultiplesRendijas(rendijas,objetivo,probabilidades):
     graficar(res)
     return res    
 
+def sistemaCuanticoParticulaEnUnaLinea(vec,pos):
+    res=0
+    k=vec[pos]
+    res2=k[0]*k[0]+k[1]*k[1]
+    for c in vec:
+        res+=c[0]*c[0]+c[1]*c[1]
+    p=res2/res
+    return p
+
+
+    
+    
 def graficar(vec):
     res=[]
     pos=[]
@@ -505,6 +520,7 @@ def graficar(vec):
     pyplot.title("Probabilidad experimento de rendija cuantica")
     pyplot.bar(pos, height=res, color='blue', width=0.5)
     pyplot.show()
+    
 def cambiarProbabilidad(g):
     for i in range(len(g)):
         for j in range(len(g[i])):
