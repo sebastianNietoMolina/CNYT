@@ -38,6 +38,16 @@ Para hacer uso de alguna funcion se debe tener en cuenta que todos los parametro
     b=(3,4)
     sumar(a,b)
 
+# Simulación de lo clásico a lo cuántico
+
+En este módulo vamos a ver la transición de lo clásico a lo cuántico, empezaremos con los sistemas determinísticos, veremos que acá lo grafos no tienen peso. Después comprenderemos su funcionamiento con números reales, acá entenderemos como modelar un sistema probabilístico clásico y, por último, vemos su modelamiento con números complejos, que nos acercara al mundo de modelos cuánticos. Veremos su comportamiento con el experimento de la doble rendija. 
+
+## Operaciones que se pueden hacer
+
+>- sistemaDeterministicoProbabilistico
+>- sistemaProbabilisticoMultiplesRendijas
+>- simulacionCuanticaMultiplesRendijas
+
 ## Pre-requisitos
 
 Para hacer uso de esta libreria debemos tener instalado en nuestro computador una version de python 3. Si no tiene python puede descargarlos en este [link](https://www.python.org/downloads/).
