@@ -48,6 +48,8 @@ En este módulo vamos a ver la transición de lo clásico a lo cuántico, empeza
 >- sistemaProbabilisticoMultiplesRendijas
 >- simulacionCuanticaMultiplesRendijas
 
+Cabe aclarar que la funcion simulacionCuanticaMultiplesRendijas, por defecto creara una grafica, por esa razon esta funcion no tiene pruebas.
+
 ## Pre-requisitos
 
 Para hacer uso de esta libreria debemos tener instalado en nuestro computador una version de python 3. Si no tiene python puede descargarlos en este [link](https://www.python.org/downloads/).
